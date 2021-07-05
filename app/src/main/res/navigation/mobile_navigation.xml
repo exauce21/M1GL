@@ -16,5 +16,10 @@
         android:name="com.example.m1gl2021.FormationFragment"
         android:label="@string/formation"
         tools:layout="@layout/fragment_formation" />
+    <fragment
+        android:id="@+id/nav_university"
+        android:name="com.example.m1gl2021.UniversityFragment"
+        android:label="@string/university"
+        tools:layout="@layout/fragment_university"/>
 
 </navigation>

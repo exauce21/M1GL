@@ -3,6 +3,9 @@ package com.example.m1gl2021;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +15,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.m1gl2021.databinding.FragmentUniversityBinding;
 
@@ -49,12 +54,27 @@ public class UniversityFragment extends Fragment implements OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         LatLng isiDakar = new LatLng(14.6864849, -17.4547941);
-        mMap.addMarker(new MarkerOptions().position(isiDakar).title("ISI Dakar").snippet("Contact: +221338221981, Site: http://groupeisi.com/"));
+        mMap.addMarker(new MarkerOptions().position(isiDakar).title("ISI").snippet("Contact: +221338221981, Site: http://groupeisi.com/"));
 
         LatLng ucadDakar = new LatLng(14.692776, -17.4617744);
-        mMap.addMarker(new MarkerOptions().position(ucadDakar).title("UCAD Dakar").snippet("Contact: +221784946215, Site: http://www.ucad.sn/"));
+        mMap.addMarker(new MarkerOptions().position(ucadDakar).title("UCAD").snippet("Contact: +221784946215, Site: http://www.ucad.sn/"));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(isiDakar, 65));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ucadDakar, 65));
+        CircleOptions co = new CircleOptions().center(isiDakar).radius(500).fillColor(Color.BLUE).strokeColor(Color.BLACK).strokeWidth(3);
+        mMap.addCircle(co);
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if(marker.getTitle().equals("ISI")){
+                   Intent intent  = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 781272661"));
+                   startActivity(intent);
+                }else {
+                    Intent intent  = new Intent(Intent.ACTION_SENDTO, Uri.parse("sms: 781272661"));
+                    intent.putExtra("sms_body", "Hello Berose");
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
     }
 }
