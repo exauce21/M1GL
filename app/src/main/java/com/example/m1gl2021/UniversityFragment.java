@@ -19,12 +19,10 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.m1gl2021.databinding.FragmentUniversityBinding;
 
 public class UniversityFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private FragmentUniversityBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
