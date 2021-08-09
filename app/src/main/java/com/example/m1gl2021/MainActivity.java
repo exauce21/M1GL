@@ -23,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPassword);
         btnConnect = findViewById(R.id.btnConnect);
         btnSignUp = findViewById(R.id.btnSign_up);
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BdActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //Gerer le Click sur le button btnConnect
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
